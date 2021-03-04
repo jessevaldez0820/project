@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Group25_Final_Project.Models.Showing>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<form asp-action="Index" asp-controller="Showings" method="get">
+    <p class="form-group">
+        Search: <input name="SearchString" class="form-control" /><br />
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a asp-action="DetailedShowingSearch" class="btn btn-success">Detailed Search</a> <a asp-action="Index" class="btn btn-danger">Show All</a>
+    </p>
+</form>
+
+<label>Displaying</label>
+@ViewBag.SelectedShowings
+<label> out of  </label>
+@ViewBag.AllShowings
+<label>Showings</label>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Movie.Title)
+            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TheaterNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialEvent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatCount)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TheaterNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpecialEvent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatCount)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ShowingID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ShowingID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ShowingID">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

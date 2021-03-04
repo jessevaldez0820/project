@@ -1,0 +1,52 @@
+@model Group25_Final_Project.Models.ShowingsViewModel
+
+  
+
+@{
+    ViewData["Title"] = "DetailedSearch";
+}
+
+<h1>Detailed Search</h1>
+
+<h4>Search View Model</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DisplayShowingResults">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Select the Movie:</label>
+                @Html.DropDownList("SelectedMovie", (SelectList)ViewBag.AllMovies, new { @class = "form-control" })
+                <span asp-validation-for="SelectedMovieID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MovieStartTime" class="control-label"></label>
+                <input asp-for="MovieStartTime" class="form-control" />
+                <span asp-validation-for="MovieStartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MovieEndTime" class="control-label"></label>
+                <input asp-for="MovieEndTime" class="form-control" />
+                <span asp-validation-for="MovieEndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountSeat" class="control-label"></label>
+                <input asp-for="CountSeat" class="form-control" />
+                <span asp-validation-for="CountSeat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AscendingDescending" class="control-label"></label><br />
+                <input type="radio" class="radio" asp-for="AscendingDescending" value="@SeatSort.Above" />Greater Than<br />
+                <input type="radio" class="radio" asp-for="AscendingDescending" value="@SeatSort.Below" />Less Than<br />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

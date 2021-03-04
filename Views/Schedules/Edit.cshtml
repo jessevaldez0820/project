@@ -1,0 +1,44 @@
+﻿@model Group25_Final_Project.Models.Schedule
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Schedule</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ScheduleID" />
+            <div class="form-group">
+
+                <label asp-for="Status" class="control-label"></label><br />
+                <input type="radio" class="radio" asp-for="Status" value="@Status.Confirmed" /> Confirmed<br />
+                <input type="radio" class="radio" asp-for="Status" value="@Status.Pending" /> Pending<br />
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+    <a asp-action="Create" asp-controller="Showings" asp-route-orderID="@Model.ScheduleID" class="btn btn-warning">Add Another Showings to this Schedule</a>
+    <a asp-action="Index" asp-controller="Showings" asp-route-orderID="@Model.ScheduleID" class="btn btn-danger">Edit Existing Showings</a>
+</div>
+
